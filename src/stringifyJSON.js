@@ -34,8 +34,10 @@ var stringifyJSON = function(obj) {
 
   //BASE CASE: determine data type of passed in value, convert value into appropriate string form, return it as part of string
   //number, string, boolean, will get returned
-  if (typeof obj === 'number' || typeof obj === 'boolean' || typeof obj === 'string') {
+  if (typeof obj === 'number' || typeof obj === 'boolean') {
     //not toString because the whole value will get stringified at the end
+    return '' + obj + '';
+  } else if (typeof obj === 'string') {
     return '"' + obj + '"';
   } else if (validCheck(obj)) {
     //outside anything, undefined
@@ -43,7 +45,7 @@ var stringifyJSON = function(obj) {
     //in an array, converted to null
     //in an object, skipped entirely
   } else if (obj === null) {
-    return null;
+    return 'null';
   }
 
   //RECURSIVE CASE: if the passed in value is an array
